@@ -1,3 +1,5 @@
+DEST	=	out/
+
 CC	=	kos-cc
 
 DIR_SRC	=	src/
@@ -11,12 +13,13 @@ NAME	=	testing.elf
 all	:	$(NAME)
 
 $(NAME)	:	$(OBJ)
-		$(CC) $(OBJ) -o $(NAME)
-		sh-elf-objcopy -O binary -R .stack testing.elf 1st_read.bin
+		$(CC) $(OBJ) -o $(DEST)$(NAME)
+		sh-elf-objcopy -O binary -R .stack $(DEST)testing.elf $(DEST)1st_read.bin
+
 clean	:
 		rm -rf $(OBJ)
 
 fclean	:	clean
-		rm -rf $(NAME) 1st_read.bin
+		rm -rf $(DEST)$(NAME) $(DEST)1st_read.bin
 
 re	:	fclean all
