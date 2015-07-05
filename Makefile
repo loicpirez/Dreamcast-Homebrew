@@ -1,25 +1,24 @@
-DEST	=	out/
+DEST		=	out/
 
-CC	=	kos-cc
+CC		=	kos-cc
 
-DIR_SRC	=	src/
+DIR_SRC		=	src/
 
-SRC	=	$(DIR_SRC)main.c
+SRC		=	$(DIR_SRC)main.c
 
-OBJ	=	$(SRC:.c=.o)
+OBJ		=	$(SRC:.c=.o)
 
-NAME	=	testing.elf
+NAME		=	testing.elf
 
-all	:	$(NAME)
+all		:	$(NAME)
 
-$(NAME)	:	$(OBJ)
-		$(CC) $(OBJ) -o $(DEST)$(NAME)
-		sh-elf-objcopy -O binary -R .stack $(DEST)testing.elf $(DEST)1st_read.bin
+$(NAME)		:	$(OBJ)
+			$(CC) $(OBJ) -o $(DEST)$(NAME)
+			sh-elf-objcopy -O binary -R .stack $(DEST)testing.elf $(DEST)1st_read.bin
+clean		:
+			rm -rf $(OBJ)
 
-clean	:
-		rm -rf $(OBJ)
+fclean		:	clean
+			rm -rf $(DEST)$(NAME) $(DEST)1st_read.bin
 
-fclean	:	clean
-		rm -rf $(DEST)$(NAME) $(DEST)1st_read.bin
-
-re	:	fclean all
+re		:	fclean all
