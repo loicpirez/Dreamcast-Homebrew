@@ -1,5 +1,7 @@
 DEST		=	out/
 
+RAW		=	raw/
+
 CC		=	kos-cc
 
 DIR_SRC		=	src/
@@ -14,11 +16,11 @@ all		:	$(NAME)
 
 $(NAME)		:	$(OBJ)
 			$(CC) $(OBJ) -o $(DEST)$(NAME)
-			sh-elf-objcopy -O binary -R .stack $(DEST)testing.elf $(DEST)1st_read.bin
+			sh-elf-objcopy -O binary -R .stack $(DEST)testing.elf $(RAW)1st_read.bin
 clean		:
 			rm -rf $(OBJ)
 
 fclean		:	clean
-			rm -rf $(DEST)$(NAME) $(DEST)1st_read.bin
+			rm -rf $(DEST)$(NAME) $(RAW)1st_read.bin
 
 re		:	fclean all
